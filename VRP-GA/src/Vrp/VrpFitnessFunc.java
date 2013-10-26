@@ -2,8 +2,10 @@ package Vrp;
 import org.jgap.*;
 
 public class VrpFitnessFunc extends FitnessFunction{
-    public VrpFitnessFunc() {
+    private VrpConfiguration vrpconf;
+    public VrpFitnessFunc(VrpConfiguration conf) {
         System.out.println("Inicializo la función de fitness");
+        this.vrpconf = conf;
     }
     
     @Override
