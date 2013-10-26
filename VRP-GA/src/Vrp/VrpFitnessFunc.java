@@ -23,7 +23,7 @@ public class VrpFitnessFunc extends FitnessFunction{
             // Esta presente en el cromosoma (minimo una visita) No estoy seguro que sea necesario
             // fitness += this.isPresent(i, chromosome);
             // Distancia que recorre cada vehículo
-            fitness += this.getDistance(i, chromosome);
+            fitness += this.getDistance(i, chromosome, this.vrpconf)*10;
             // Entrega toda su capacidad
             fitness += this.getCapacity(i, this.vrpconf.VEHICLE_CAPACITY, chromosome);
         }
@@ -38,22 +38,22 @@ public class VrpFitnessFunc extends FitnessFunction{
     
     public double isPresent(int vehicleNumber, IChromosome chromosome){
         // Sin contar el primer elemento, ya que este es el origen
-        LinkedList positions = getPositions(vehicleNumber, chromosome);
+        LinkedList positions = getPositions(vehicleNumber, chromosome, this.vrpconf);
         if(positions.size() > 0){
             return 0.0;
         }
         return 100.00;
     }
     
-    public double getDistance(int vehicleNumber, IChromosome chromosome){
+    public static double getDistance(int vehicleNumber, IChromosome chromosome, VrpConfiguration vrpconf){
         double totalDistance    = 0.0;
-        LinkedList positions    = getPositions(vehicleNumber, chromosome);
-        Node deposito           = this.vrpconf.nodos[0];
+        LinkedList positions    = getPositions(vehicleNumber, chromosome, vrpconf);
+        Node deposito           = vrpconf.nodos[0];
         Node ultimaVisita       = deposito;
         
         while(!positions.isEmpty()){
             int pos = ((Integer) positions.pop()).intValue();
-            Node visita  = this.vrpconf.nodos[pos];
+            Node visita  = vrpconf.nodos[pos];
             totalDistance += ultimaVisita.distancia(visita);
             ultimaVisita = visita;
         }
@@ -65,7 +65,7 @@ public class VrpFitnessFunc extends FitnessFunction{
     
     public double getCapacity(int vehicleNumber, int vehicleCapacity, IChromosome chromosome){
         double demandaTotal = 0.0;
-        LinkedList positions = getPositions(vehicleNumber, chromosome);
+        LinkedList positions = getPositions(vehicleNumber, chromosome, this.vrpconf);
         while(!positions.isEmpty()){
             int pos = ((Integer) positions.pop()).intValue();
             Node visita  = this.vrpconf.nodos[pos];
@@ -80,12 +80,12 @@ public class VrpFitnessFunc extends FitnessFunction{
         return (vehicleCapacity-demandaTotal)*2;
     }
     
-    public LinkedList getPositions(int vehicleNumber, IChromosome chromosome){
+    public static LinkedList getPositions(int vehicleNumber, IChromosome chromosome, VrpConfiguration vrpconf){
         // Sin contar el deposito
         LinkedList p = new LinkedList();
-        for(int i=1; i < this.vrpconf.GRAPH_DIMENSION; i++){
+        for(int i=1; i < vrpconf.GRAPH_DIMENSION; i++){
             int valorCromosoma = ((Integer) chromosome.getGene(i).getAllele()).intValue();
-            if(valorCromosoma == i){
+            if(valorCromosoma == vehicleNumber){
                p.add(i);
             }
         }

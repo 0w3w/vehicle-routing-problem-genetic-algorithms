@@ -1,4 +1,5 @@
 package Vrp;
+import java.util.LinkedList;
 import org.jgap.*;
 import org.jgap.impl.*;
 
@@ -28,7 +29,7 @@ public class Vrp {
         }
         IChromosome sampleChromosome = new Chromosome(conf, sampleGenes);
         conf.setSampleChromosome(sampleChromosome);
-        conf.setPopulationSize(30);
+        conf.setPopulationSize(60);
 
         Genotype population;
         population = Genotype.randomInitialGenotype(conf);
@@ -51,12 +52,28 @@ public class Vrp {
 
         IChromosome bestSolutionSoFar = population.getFittestChromosome();
         double v1 = bestSolutionSoFar.getFitnessValue();
-        System.out.println("La mejor solución fue: " + v1);
+        System.out.println("La mejor solución fitness fue: " + v1);
         bestSolutionSoFar.setFitnessValueDirectly(-1);
         System.out.println("Resultado: ");
         for (int i = 0; i < vrpconf.GRAPH_DIMENSION; i++) {
            System.out.println(i +". " + VrpFitnessFunc.getNumberAtGene(bestSolutionSoFar, i) );  
         }
+        Double  distance = 0.0;
+        Double  distancep= 0.0;
+        LinkedList routes;
+        for(int i = 0; i<vrpconf.VEHICLE_NUMBER;i++){
+            distancep = VrpFitnessFunc.getDistance(i, bestSolutionSoFar, vrpconf);
+            routes = VrpFitnessFunc.getPositions(i, bestSolutionSoFar, vrpconf);
+            System.out.print("Ruta #" + i + " :");
+            while(!routes.isEmpty()){
+                int pos = ((Integer) routes.pop()).intValue();
+                System.out.print(pos + ", ");
+            }
+            System.out.println();
+            System.out.println("\t La distancia de la ruta es: "+distancep);
+            distance += distancep;
+        }
+        System.out.println("La mejor distancia fue: " + distance);
         System.out.println();
     }
     
