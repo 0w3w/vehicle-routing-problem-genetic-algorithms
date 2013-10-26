@@ -4,13 +4,17 @@ import org.jgap.impl.*;
 
 public class Vrp {
 
-    private static final int MAX_EVOLUTIONS   = 2000;
-    
+    private static final int MAX_EVOLUTIONS   = 5000;
+
     public static void Vrp() throws Exception{
         Configuration conf = new DefaultConfiguration();
         conf.setPreservFittestIndividual(true);
        
-        VrpConfiguration vrpconf = new VrpConfiguration("A-n45-k6-in.txt", 6);
+        VrpConfiguration vrpconf = new VrpConfiguration();
+        //VrpConfiguration vrpconf = new VrpConfiguration("Extras/A-n45-k6-in.txt", 6);
+        //VrpConfiguration vrpconf = new VrpConfiguration("Extras/A-n60-k0-in.txt", 9);
+        vrpconf.print();
+        
         
         FitnessFunction myFunc = new VrpFitnessFunc(vrpconf);
 
