@@ -10,17 +10,17 @@ public class Vrp {
         Configuration conf = new DefaultConfiguration();
         conf.setPreservFittestIndividual(true);
        
-        VrpConfiguration vrpconf = new VrpConfiguration("A-n45-k6-in.txt");
+        VrpConfiguration vrpconf = new VrpConfiguration("A-n45-k6-in.txt", 6);
         
         FitnessFunction myFunc = new VrpFitnessFunc(vrpconf);
 
         conf.setFitnessFunction(myFunc);
-        Gene[] sampleGenes = new Gene[vrpconf.GRAPH_DIMENSION];
+        Gene[] sampleGenes = new Gene[vrpconf.getGRAPH_DIMENSION()];
         /*
          * Iniciar los Genes en sus valores minimos y máximos
         */
-        for(int i=0; i<vrpconf.GRAPH_DIMENSION; i++){
-        	sampleGenes[i] = new IntegerGene(conf, 1, vrpconf.VEHICLE_NUMBER);
+        for(int i=0; i<vrpconf.getGRAPH_DIMENSION(); i++){
+        	sampleGenes[i] = new IntegerGene(conf, 1, vrpconf.getVEHICLE_NUMBER());
         }
         IChromosome sampleChromosome = new Chromosome(conf, sampleGenes);
         conf.setSampleChromosome(sampleChromosome);
@@ -50,7 +50,7 @@ public class Vrp {
         System.out.println("La mejor solución fue: " + v1);
         bestSolutionSoFar.setFitnessValueDirectly(-1);
         System.out.println("Resultado: ");
-        for (int i = 0; i < vrpconf.GRAPH_DIMENSION; i++) {
+        for (int i = 0; i < vrpconf.getGRAPH_DIMENSION(); i++) {
            System.out.println(i +". " + VrpFitnessFunc.getNumberAtGene(bestSolutionSoFar, i) );  
         }
         System.out.println();

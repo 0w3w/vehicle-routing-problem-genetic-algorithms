@@ -7,9 +7,9 @@
 package Vrp;
 
 public class Node {
-    public int x;
-    public int y;
-    public int demanda;
+    private int x;
+    private int y;
+    private int demanda;
     
     Node(){
         this.x = 0;
@@ -17,13 +17,55 @@ public class Node {
         this.demanda = 0;
     }
     
-    Node(int ix, int iy, int idemanda){
+    Node(int ix, int iy){
         this.x = ix;
         this.y = iy;
-        this.demanda = idemanda;
+        this.demanda = 0;
     }
     
     public double distancia(Node n){
-        return Math.sqrt(Math.pow((n.x + this.x),2) + Math.pow((n.y + this.y),2));
+        return Math.sqrt(Math.pow((n.getX() + this.getX()),2) + Math.pow((n.getY() + this.getY()),2));
+    }
+
+    /**
+     * @return the x
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * @param x the x to set
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * @return the y
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * @param y the y to set
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    /**
+     * @return the demanda
+     */
+    public int getDemanda() {
+        return demanda;
+    }
+
+    /**
+     * @param demanda the demanda to set
+     */
+    public void setDemanda(int demanda) {
+        this.demanda = demanda;
     }
 }
