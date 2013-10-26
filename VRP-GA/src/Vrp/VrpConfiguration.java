@@ -13,9 +13,9 @@ import java.io.IOException;
 
 public class VrpConfiguration 
 {
-    private int GRAPH_DIMENSION;
-    private int VEHICLE_CAPACITY;
-    private int VEHICLE_NUMBER;
+    public int GRAPH_DIMENSION;
+    public int VEHICLE_CAPACITY;
+    public int VEHICLE_NUMBER;
     public Node nodos[];
     
     VrpConfiguration()
@@ -94,47 +94,4 @@ public class VrpConfiguration
             }
         }
     }
-
-    /**
-     * @return the GRAPH_DIMENSION
-     */
-    public int getGRAPH_DIMENSION() {
-        return GRAPH_DIMENSION;
-    }
-
-    /**
-     * @param GRAPH_DIMENSION the GRAPH_DIMENSION to set
-     */
-    public void setGRAPH_DIMENSION(int GRAPH_DIMENSION) {
-        this.GRAPH_DIMENSION = GRAPH_DIMENSION;
-    }
-
-    /**
-     * @return the VEHICLE_CAPACITY
-     */
-    public int getVEHICLE_CAPACITY() {
-        return VEHICLE_CAPACITY;
-    }
-
-    /**
-     * @param VEHICLE_CAPACITY the VEHICLE_CAPACITY to set
-     */
-    public void setVEHICLE_CAPACITY(int VEHICLE_CAPACITY) {
-        this.VEHICLE_CAPACITY = VEHICLE_CAPACITY;
-    }
-
-    /**
-     * @return the VEHICLE_NUMBER
-     */
-    public int getVEHICLE_NUMBER() {
-        return VEHICLE_NUMBER;
-    }
-
-    /**
-     * @param VEHICLE_NUMBER the VEHICLE_NUMBER to set
-     */
-    public void setVEHICLE_NUMBER(int VEHICLE_NUMBER) {
-        this.VEHICLE_NUMBER = VEHICLE_NUMBER;
-    }
-    
 }
