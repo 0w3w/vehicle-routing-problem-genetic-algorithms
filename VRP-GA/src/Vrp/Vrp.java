@@ -20,7 +20,7 @@ public class Vrp {
          * Iniciar los Genes en sus valores minimos y máximos
         */
         for(int i=0; i<vrpconf.GRAPH_DIMENSION; i++){
-        	sampleGenes[i] = new IntegerGene(conf, 1, vrpconf.VEHICLE_NUMBER);
+        	sampleGenes[i] = new IntegerGene(conf, 0, (vrpconf.VEHICLE_NUMBER-1));
         }
         IChromosome sampleChromosome = new Chromosome(conf, sampleGenes);
         conf.setSampleChromosome(sampleChromosome);
