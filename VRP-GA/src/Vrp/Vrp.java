@@ -10,8 +10,8 @@ public class Vrp {
         Configuration conf = new DefaultConfiguration();
         conf.setPreservFittestIndividual(true);
        
-        VrpConfiguration vrpconf = new VrpConfiguration();
-        //VrpConfiguration vrpconf = new VrpConfiguration("Extras/A-n45-k6-in.txt", 6);
+        //VrpConfiguration vrpconf = new VrpConfiguration();
+        VrpConfiguration vrpconf = new VrpConfiguration("Extras/A-n45-k6-in.txt", 6);
         //VrpConfiguration vrpconf = new VrpConfiguration("Extras/A-n60-k0-in.txt", 9);
         vrpconf.print();
         

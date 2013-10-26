@@ -64,6 +64,7 @@ public class VrpConfiguration
                 {
                     value = line.split(":");
                     VEHICLE_CAPACITY = Integer.parseInt(value[1].trim());
+                    break;
                 }
             }
             this.nodos = new Node[GRAPH_DIMENSION];
@@ -76,20 +77,19 @@ public class VrpConfiguration
                 {
                     demand = true;
                     i = 0;
+                    line = br.readLine();
                 }
                 if (!demand)
                 {
-                    value = line.split(" ");
+                    value = line.trim().split(" ");
                     x = Integer.parseInt(value[1]);
                     y = Integer.parseInt(value[2]);
                     nodos[i++] = new Node(x, y);
-                    System.out.println("New node created ("+x+","+y+")");
                 }
                 else
                 {
-                    value = line.split(" ");
+                    value = line.trim().split(" ");
                     d = Integer.parseInt(value[1]);
-                    System.out.println("Set demanda del nodo #"+i+" a "+d);
                     nodos[i++].setDemanda(d);
                 }
             }
