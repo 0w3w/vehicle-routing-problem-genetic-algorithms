@@ -24,7 +24,7 @@ public class Node {
     }
     
     public double distancia(Node n){
-        return Math.sqrt(Math.pow((n.getX() + this.getX()),2) + Math.pow((n.getY() + this.getY()),2));
+        return Math.sqrt(Math.pow((n.getX() - this.getX()),2) + Math.pow((n.getY() - this.getY()),2));
     }
     
     public void print(){

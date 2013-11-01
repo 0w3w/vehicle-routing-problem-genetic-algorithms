@@ -23,7 +23,7 @@ public class VrpConfiguration
         // Init with a Dummy configuration, testing purposes
         this.GRAPH_DIMENSION = 10;
         this.VEHICLE_CAPACITY = 5;
-        this.VEHICLE_NUMBER = 2;
+        this.VEHICLE_NUMBER = 3;
         this.nodos = new Node[GRAPH_DIMENSION];
         this.nodos[0] = new Node(0,0); // Inicio
         this.nodos[1] = new Node(1,1);

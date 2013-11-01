@@ -1,5 +1,6 @@
 package Vrp;
 import java.util.LinkedList;
+import java.util.Scanner;
 import org.jgap.*;
 import org.jgap.impl.*;
 
@@ -11,12 +12,35 @@ public class Vrp {
         Configuration conf = new DefaultConfiguration();
         conf.setPreservFittestIndividual(true);
        
-        //VrpConfiguration vrpconf = new VrpConfiguration();
-        VrpConfiguration vrpconf = new VrpConfiguration("Extras/A-n45-k6-in.txt", 6);
-        //VrpConfiguration vrpconf = new VrpConfiguration("Extras/A-n60-k0-in.txt", 9);
+        System.out.println("------VRP-----");
+        System.out.println("Elige el archivo con el problema vrp: ");
+        System.out.println("0) test [10 destinos]");
+        System.out.println("1) 45 destinos");
+        System.out.println("2) 60 destinos");
+        System.out.println("");
+        int seleccion, camiones;
+        Scanner scanIn = new Scanner(System.in);
+        VrpConfiguration vrpconf = null;
+        seleccion = scanIn.nextInt();
+        System.out.println("Coloca el numero de camiones: ");
+        camiones = scanIn.nextInt();
+        if (seleccion == 0)
+        {
+            vrpconf = new VrpConfiguration();
+        }
+        else if (seleccion == 1)
+        {
+            vrpconf = new VrpConfiguration("Extras/A-n45-k6-in.txt", camiones);
+        }
+        else if (seleccion == 2)
+        {
+            vrpconf = new VrpConfiguration("Extras/A-n60-k0-in.txt", camiones);
+        }
+        else
+        {
+            vrpconf = new VrpConfiguration();
+        }
         vrpconf.print();
-        
-        
         FitnessFunction myFunc = new VrpFitnessFunc(vrpconf);
 
         conf.setFitnessFunction(myFunc);
